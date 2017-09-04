@@ -492,7 +492,7 @@
 
 \renewenvironment{abstract}{%
   \section*{Abstract}%
-  \normalsize}{%
+  \normalsize}{%\raggedright (equivalent to flushleft)
   }
 
 %                       Bibliography

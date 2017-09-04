@@ -38,35 +38,41 @@
 \setlength{\pdfpageheight}{\paperheight}
 \setlength{\pdfpagewidth}{\paperwidth}
 
-\conferenceinfo{CONF 'yy}{Month d--d, 20yy, City, ST, Country}
-\copyrightyear{20yy}
-\copyrightdata{978-1-nnnn-nnnn-n/yy/mm}
+\conferenceinfo{CONF 'yy}{Month d--d, 20yy, City, ST, Country} 
+\copyrightyear{20yy} 
+\copyrightdata{978-1-nnnn-nnnn-n/yy/mm} 
 \doi{nnnnnnn.nnnnnnn}
 
-% Uncomment one of the following two, if you are not going for the
+% Uncomment one of the following two, if you are not going for the 
 % traditional copyright transfer agreement.
 
-%\exclusivelicense                % ACM gets exclusive license to publish,
+%\exclusivelicense                % ACM gets exclusive license to publish, 
                                   % you retain copyright
 
 %\permissiontopublish             % ACM gets nonexclusive license to publish
-                                  % (paid open-access papers,
+                                  % (paid open-access papers, 
                                   % short abstracts)
 
 \titlebanner{banner above paper title}        % These are ignored unless
 \preprintfooter{short description of paper}   % 'preprint' option specified.
 
-\title{Title Text}
-\subtitle{Subtitle Text, if any}
+\title{Automated program corrector for programming assignments on behalf of Deep Learning}
+% \subtitle{Subtitle Text, if any}
 
-\authorinfo{TODO: name}
+\authorinfo{Soo Kim}
            {Seoul National University}
-           {TODO: email}
+           {sookim@ropas.snu.ac.kr}
 
 \maketitle
 
 \begin{abstract}
-This is the text of the abstract.
+
+Recently I have been working on reproducing the result of automated neural program correcting\cite{pu2016sk_p}, which is supposed to fix about 30\% of arbitrary assignments. While briefly reporting the current status of my implementation, I will locate in which context the paper is exactly positioned and reveal implications of it, omitted by the author whether deliberately or not. And based on the context, I suggest several approaches that can improve a correct rate of the model and show a point of contact with the approaches of AA team.
+
+The most fundamental idea of the given paper is that we can fix and locate erroneous code lines by adopting methods of NLP. Since program code and natural languages are similar\cite{hindle2012naturalness}, applying matured techniques from the alien field is worth a try. Especially the neural based language translation model is applicable to program code fixing.
+
+However, because of the very idea of the trans-field application, there might be better improvements exploiting properties of program languages over the naive approach. To begin with, though the author might succeed in regenerating codes, it cannot locate exactly in which line a program is wrong and whether generate a fix. What the author has done is brute-forcing, which is quite unpleasant considering exponential search area. Secondly, as adapting methodologies of NLP, the author is throwing out all the rich information of program codes compared to natural languages. Alpha conversion, AST\cite{mou2016convolutional}, type and further information using static analysis are potential candidates to be considered. So from these two points, further improvement of the corrector ought to begin.
+
 \end{abstract}
 
 \section{Introduction}
@@ -82,10 +88,3 @@ Hello, World!
 \bibliography{references}
 
 \end{document}
-
-%                       Revision History
-%                       -------- -------
-%  Date         Person  Ver.    Change
-%  ----         ------  ----    ------
-
-%  2013.06.29   TU      0.1--4  comments on permission/copyright notices
