@@ -74,7 +74,7 @@ In this article, I will explain how to use deep learning to find and correct wro
 
 \end{abstract}
 
-\section{Introduction}
+\section{introduction}
 
 Before starting the presentation, I first make clear that the ideas presented here are in the published paper\cite{pu2016sk_p} and that I did not originally devise them. Rather, I have focused on understanding the concept of deep learning and natural language processing which were both unfamiliar to me, and reproducing the result of the paper using libraries. In addition, I focused on clarifying the significance of the paper by digesting the theoretical background of it, which was not mentioned by the authors of the original paper intentionally or not.
 
@@ -94,13 +94,14 @@ And I constructed and trained the deep learning model, specifically modifying th
 
 Now that I have successfully generated the code, I need to find the error in the original program. If a line is the cause of the error, you can fix the problem by regenerating or removing the line. Error localization can be done stochastically from generated code. I made the probability of the generated code for each generation point is derived also. And tried to modify the code in descending order according to probability. Assuming that there are 21 possibilities in 10-line code, there are 21 points for one point correction and $ \comb{21}{2} $ for 2 point correction and so on. Thus, the size of the search space is theoretically $ 2^{21} $. In addition, I can use beam search to generate n possible lines stochastically instead of generating one for each revision point, which greatly increases the search space but predictably reduces the chance of missing the answer.
 
-\section{Issues}
+\section{issues}
 
 However, the above method cannot fundamentally go beyond the theoretical limits. First, the logic to find the location of the error is incomplete - it just relies on stochastic results of code generation, which is somewhat irrelevant with occasions of errors; second, it does not exploit the difference between the program and the natural language, thus throwing out all the rich information of programs.
 
-Though the method might succeed in regenerating codes, it cannot locate exactly in which line a program is wrong and whether generate a fix. The suggested localizing method is brute-forcing, which is quite unpleasant considering the search area growing exponentially.
+Though the method might succeed in regenerating codes, it cannot locate exactly in which line a program is wrong and whether generate a fix. The suggested localizing method is brute-forcing, which is quite unpleasant considering the search area growing exponentially. This can be dramatically improved coordination with AA team, MaxSAT based error localization system.
 
 Next, as adapting methodologies of NLP, I threw out all the rich information of program codes compared to natural languages. Alpha conversion, AST\cite{mou2016convolutional}, type and further information using static analysis are the properties which only belongs to programs. These properties can be potential candidates to increase the performance of the corrector.
+
 In my opinion, exploiting AST structure is the best next step to take.
 
 
